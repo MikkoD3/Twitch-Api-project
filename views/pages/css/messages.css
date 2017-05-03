@@ -1,0 +1,44 @@
+#chatcontrol {
+  position: fixed;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#message-container {
+  background-color: white;
+  color: black;
+  overflow: scroll;
+  width: 900px;
+  height: 600px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#chatUser {
+  color: #6441a5 !important;
+}
+.messages {
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 10px 20px 10px 20px;
+}
+#chatBtn {
+width: 150px;
+height: 50px;
+font-size: 20px;
+position: sticky;
+}
+
+#message {
+position:sticky;
+width: 1400px;
+height: 50px;
+font-size: 20px;
+
+}

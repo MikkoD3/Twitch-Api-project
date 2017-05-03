@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+  background-color: black !important;
+}
+</style>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Admin Page</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+<link href="pages/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="pages/js/admindelete.js"></script>
+    <script src="pages/js/admindrag.js"></script>
+    <script>
+function helpme() {
+  alert("To Edit text: copy the _id of the line, \n \
+  Then fill the form in order to edit the message!\n\
+  To Delete message just press the Button!")
+}
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse" style="border-radius: 0px;">
+      <div class="navbar-header">
+            <p class="navbar-brand" href="#">Admin Page</p>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><button onclick="helpme()" class="btn btn-info" style="height: 60px !important;">&nbsp; &nbsp; Help ? &nbsp;&nbsp;</button></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a role="button" href="/logout">Log Out</a></li>
+          <li>&nbsp;</li>
+          <li>&nbsp;</li>
+        </ul>
+    </nav>
+
+
+
+<div class="container" style="background-color: #6441a5 !important; border-radius: 2px;">
+<form method="post" action="/update">
+  <div class="form-group">
+  <label for="id" class="colorng" style="color: white !important">Object Id:</label><input type="text" name="id" class="form-control" id="id"></input>
+  </div>
+<div class="form-group">
+<label for="username" class="colorng"  style="color: white !important">Username:</label><input type="text" name="username" class="form-control" placeholder="admin"></input>
+</div>
+<div class="form-group">
+<label for="message" class="colorng"  style="color: white !important">Message:</label><input type="text" name="message" class="form-control"></input>
+</div>
+<div class="form-group">
+<label for="Date" class="colorng"  style="color: white !important">Date:</label><input type="text" name="date" class="form-control" value="<%= new Date() %>"></input>
+</div>
+<input type="submit" value="Update" class="btn btn-success">
+</form>
+<br>
+</div>
+<br>
+<br>
+
+  <div class="container">
+    <table class="table table-bordered">
+        <tr class="active">
+          <th>Object Id</th>
+          <th>Guest number</th>
+          <th>Username</th>
+          <th>Country</th>
+          <th>Message</th>
+          <th>Date</th>
+          <th>Delete</th>
+        </tr>
+        <tr class="active">
+           <% for (var i=0; i < messages.length; i++) { %>
+             <td class="active"><p id="<%= messages[i]._id %>"><%= messages[i]._id %></p></td>
+              <td class="active"><%= messages[i].guestnumber %></td>
+              <td class="active"><%= messages[i].username %></td>
+              <td class="active"><%= messages[i].country %></td>
+              <td class="active"><%= messages[i].message %></td>
+              <td class="active"><%= messages[i].date %></td>
+              <td class="active"><button type="button" class="btn btn-danger" id="delete" onclick="myFunction(<%= messages[i].guestnumber %>)" data-value="<% messages[i].guestnumber %>" >Remove Message</button></td>
+            </tr>
+           <% } %>
+
+      </table>
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="pages/js/navbar.js"></script>
+      <% include ../partials/footer %>
+  </body>
+</html>

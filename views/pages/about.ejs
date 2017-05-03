@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+  background-color: black !important;
+}
+</style>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <% include ../partials/head %>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+<link href="pages/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      <% include ../partials/header %>
+
+    <div class="jumbotron" style="margin-top: -20px !important;">
+      <section>
+        <h3 style="color: #6441a5 !important;">Random Twitch stream</h3>
+        <p>Random twitch stream provides  you a completely random twitch stream from 25 streams.<br>
+          25 is unfortunately the limit that the Twitch API provides for its live streams.<br>
+          Hope you can still enjoy this app!</p>
+        </section>
+    </div>
+    <br>
+    <br>
+    <br>
+
+<div id="navBar">
+  <ul class="nav nav-tabs" style="width: 600px !important;">
+    <li class="active" style="width: 300px !important;"><a data-toggle="tab" href="#messages" style="color:black !important;">Check what others have said</a></li>
+    <li style="width: 300px !important;"><a data-toggle="tab" href="#writemsg" style="color:black !important;">Go Write your message!</a></li>
+  </ul>
+</div>
+<br>
+<br>
+<div class="tab-content">
+  <div id="writemsg" class="tab-pane fade">
+    <div class="container">
+
+    <form method="post" action="/about" id="msgform">
+      <div class="form-group">
+    <% var data = messages; %>
+    <% var addnum = data.length +1; %>
+    <label for="username" class="coloring">Guest Number:</label><input type="text" name="guestnumber" class="form-control" value="<%= addnum %>" readonly>
+  </div>
+    <div class="form-group">
+      <label for="username" class="coloring">Username:</label><input type="text" name="username" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="country" class="coloring">Country:</label> <input type="text" name="country" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="message" class="coloring">Message:</label> <input type="text" name="message" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="message" class="coloring">Date:</label> <input type="text" name="date" class="form-control" value="<%= new Date() %>" readonly>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-default">
+  </form>
+  </div>
+</div>
+<div id="messages" class="tab-pane fade in active">
+  <div id="tabledata">
+    <table class="table table-bordered">
+      <tr class="active">
+        <th>Guest Number</th>
+        <th>Username</th>
+        <th>Country</th>
+        <th>message</th>
+        <th>Date</th>
+      </tr>
+      <tr class="active">
+         <% for (var i=0; i < messages.length; i++) { %>
+            <td class="active"><%= messages[i].guestnumber %></td>
+            <td class="active"><%= messages[i].username %></td>
+            <td class="active"><%= messages[i].country %></td>
+            <td class="active"><%= messages[i].message %></td>
+            <td class="active"><%= messages[i].date %></td>
+          </tr>
+         <% } %>
+
+    </table>
+  </div>
+</div>
+</div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="pages/js/navbar.js"></script>
+      <% include ../partials/footer %>
+  </body>
+</html>
